@@ -14,4 +14,5 @@ def parse(file_path):
     return martix.reshape(size, size)
 
 
-print(parse(name))
+# print(parse(name))
+# print(len(parse(name)))
