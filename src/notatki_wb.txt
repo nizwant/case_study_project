@@ -43,5 +43,6 @@ prawdopodobienstwem swap_prob losujemy czy sie zamieniają
 
 
 Powtarzamy #Metropolis i #Replica Transition k razy- parametr 
-i przechodzimy do fazy chłodzenia kazdego ze stanow
+i przechodzimy do fazy chłodzenia kazdego ze stanow 
+następnie powtarzamy to wszystko od początku
 

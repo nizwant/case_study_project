@@ -79,3 +79,32 @@ def random_initial_solution(distance_matrix: float) -> list:
     solution = list(range(size))
     random.shuffle(solution)
     return solution
+
+
+def initialization(
+    distance_matrix: float,
+    n: int,
+    min_temperature: float,
+    max_temperature: float,
+    probability_of_shuffle: float,
+    probability_of_heuristic: float,
+    a: float = 1,
+    b: float = 1,
+) -> tuple:
+    """
+    Returns a tuple of lists, where
+    the first list is a list of n temperatures between min_temperature and max_temperature,
+    the second list is a bool list of length n, where
+    q[i] = True means that the transition
+    function at index i is a shuffle transition function,
+    the third list is a list of n initial solutions, where
+    q[i] has probability_of_heuristic chance of being a heuristic initial solution.
+    """
+    temperatures = initialize_temperatures(n, min_temperature, max_temperature, a, b)
+    transition_function_type = initialize_transition_function_type(
+        n, probability_of_shuffle
+    )
+    initial_solution = initialize_initial_solution(
+        n, distance_matrix, probability_of_heuristic
+    )
+    return temperatures, transition_function_type, initial_solution
