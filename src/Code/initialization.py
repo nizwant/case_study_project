@@ -23,7 +23,7 @@ def initialize_transition_function_types(n: int, probability_of_shuffle: float) 
 
 
 def initialize_initial_solutions(
-    n: int, distance_matrix: float, probability_of_heuristic: float
+    n: int, distance_matrix: list[list[float]], probability_of_heuristic: float
 ) -> list:
     """
     Returns a list of n solutions, where
@@ -44,7 +44,7 @@ def initialize_initial_solutions(
     return initial_solution
 
 
-def nearest_neighbor_initial_solution(distance_matrix: float) -> list:
+def nearest_neighbor_initial_solution(distance_matrix: list[list[float]]) -> list:
     """
     Finds a suboptimal solution to the asymmetric Traveling Salesman Problem
     It is irrelevant what values are on the diagonal of the matrix
@@ -68,7 +68,7 @@ def nearest_neighbor_initial_solution(distance_matrix: float) -> list:
     return path
 
 
-def random_initial_solution(distance_matrix: float) -> list:
+def random_initial_solution(distance_matrix: list[list[float]]) -> list:
     """
     Finds a completely random solution to the asymmetric Traveling Salesman Problem
 
@@ -82,7 +82,7 @@ def random_initial_solution(distance_matrix: float) -> list:
 
 
 def initialization(
-    distance_matrix: float,
+    distance_matrix: list[list[float]],
     n: int,
     min_temperature: float,
     max_temperature: float,

@@ -2,7 +2,7 @@ from initialization import initialization
 
 
 def pt_sa(
-    distance_matrix: float,
+    distance_matrix: list[list[float]],
     n: int,
     min_temperature: float,
     max_temperature: float,
