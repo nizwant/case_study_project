@@ -13,7 +13,7 @@ def initialize_temperatures(
     return beta(a, b, n) * (max - min) + min
 
 
-def initialize_transition_function_type(n: int, probability_of_shuffle: float) -> list:
+def initialize_transition_function_types(n: int, probability_of_shuffle: float) -> list:
     """
     Returns a bool list of length n, where
     q[i] = True means that the transition
@@ -22,7 +22,7 @@ def initialize_transition_function_type(n: int, probability_of_shuffle: float) -
     return [random.random() < probability_of_shuffle for _ in range(n)]
 
 
-def initialize_initial_solution(
+def initialize_initial_solutions(
     n: int, distance_matrix: float, probability_of_heuristic: float
 ) -> list:
     """
@@ -88,12 +88,13 @@ def initialization(
     max_temperature: float,
     probability_of_shuffle: float,
     probability_of_heuristic: float,
-    a: float = 1,
-    b: float = 1,
+    a: float,
+    b: float,
 ) -> tuple:
     """
     Returns a tuple of lists, where
     the first list is a list of n temperatures between min_temperature and max_temperature,
+    with a and b as parameters for the beta distribution.
     the second list is a bool list of length n, where
     q[i] = True means that the transition
     function at index i is a shuffle transition function,
@@ -101,10 +102,10 @@ def initialization(
     q[i] has probability_of_heuristic chance of being a heuristic initial solution.
     """
     temperatures = initialize_temperatures(n, min_temperature, max_temperature, a, b)
-    transition_function_type = initialize_transition_function_type(
+    transition_function_types = initialize_transition_function_types(
         n, probability_of_shuffle
     )
-    initial_solution = initialize_initial_solution(
+    initial_solutions = initialize_initial_solutions(
         n, distance_matrix, probability_of_heuristic
     )
-    return temperatures, transition_function_type, initial_solution
+    return temperatures, transition_function_types, initial_solutions
