@@ -10,7 +10,7 @@ def pt_sa(
     probability_of_heuristic: float,
     a: float,
     b: float,
-) -> list:
+) -> tuple[list[int], float]:
     temperatures, transition_function_types, initial_solutions = initialization(
         distance_matrix,
         n,
