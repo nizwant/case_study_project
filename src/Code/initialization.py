@@ -30,18 +30,28 @@ def initialize_initial_solution(
     q[i] has probability_of_heuristic chance of being a heuristic initial solution.
     heuristic used here is nearest neighbor.
     """
+    # calculate nearest neighbor solution only once
     nearest_neighbor_solution = nearest_neighbor_initial_solution(distance_matrix)
 
-    return [random.random() < probability_of_heuristic for _ in range(n)]
+    # create initial solution list and fill it with
+    # either nearest neighbor solution or random solution
+    initial_solution = [None for _ in range(n)]
+    for i in range(n):
+        if random.random() < probability_of_heuristic:
+            initial_solution[i] = nearest_neighbor_solution
+        else:
+            initial_solution[i] = random_initial_solution(distance_matrix)
+    return initial_solution
 
 
 def nearest_neighbor_initial_solution(distance_matrix: float) -> list:
     """
-    Finds a suboptimal solution to the asymmetric Traveling Salesman Problem (TSP)
+    Finds a suboptimal solution to the asymmetric Traveling Salesman Problem
     It is irrelevant what values are on the diagonal of the matrix
 
     :return: list:
-            A list of integers representing the order in which cities should be visited to obtain a suboptimal
+            A list of integers representing the order in which
+            cities should be visited to obtain a suboptimal
             solution to the TSP. The first city in the path is always city 0.
     """
     size = distance_matrix.shape[0]
@@ -58,5 +68,14 @@ def nearest_neighbor_initial_solution(distance_matrix: float) -> list:
     return path
 
 
-def random_initial_solution():
-    pass
+def random_initial_solution(distance_matrix: float) -> list:
+    """
+    Finds a completely random solution to the asymmetric Traveling Salesman Problem
+
+    :return: list:
+        A list of integers representing the order in which cities should be visited
+    """
+    size = distance_matrix.shape[0]
+    solution = list(range(size))
+    random.shuffle(solution)
+    return solution
