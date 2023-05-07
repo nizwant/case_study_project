@@ -55,7 +55,14 @@ def pt_sa(
                         solutions_length[state],
                     )
 
-            # TODO: petla robiąca replica transition
-        # TODO: zakonczenie petli ktora wykonuje sie k razy i zmienijszanie temperatury i koniec
+            for _ in range(n):
+                pass
+                # TODO: replica transition (exchange of solutions)
+                # TODO: new parameters: swap_states_probability
+
+        for state in range(n):
+            pass
+            # TODO: cooling each state
+            # TODO: new parameters: cooling_rate/ cooling_function
 
     return best_solution, best_solution_length

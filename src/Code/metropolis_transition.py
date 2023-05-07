@@ -45,6 +45,13 @@ def transition_function_swap(
     distance_matrix: list[list[float]],
     transformation_length: int,
 ) -> tuple[list[int], float]:
+    if transformation_length < 1:
+        # minimum length of this transformation that make sense is 1
+        transformation_length = 1
+
+    start_index_first_path = randrange(len(solution))
+    start_index_second_path = randrange(len(solution))
+
     return None, None
     # TODO: implement transition_function_swap
 
