@@ -18,17 +18,18 @@ def main():
         "k": 10,
         "max_length_percent_of_cycle": 0.2,  # max 0.3 more will result in bugs
         "swap_states_probability": 0.1,
-        "closeness": 1.5
+        "closeness": 1.5,
+        "cooling_rate": 0.1
     }
 
     solution, solution_length = pt_sa(distance_matrix, **parameters)
     print(f"Solution: {solution}\nSolution length: {solution_length}")
 
 
-# TODO: handling cooling
+# TODO: make cooling cooler
 # TODO: testing and debugging
 # TODO: profiling
-# TODO: parameters
+# TODO: parameters (testing, description)
 
 if __name__ == "__main__":
     main()

@@ -1,24 +1,26 @@
-from initialization import initialization
-from metropolis_transition import metropolis_transition
 from time import time
 
+from initialization import initialization
+from metropolis_transition import metropolis_transition
+from src.Code.cooling import cooling
 from src.Code.replica_transition import replica_transition
 
 
 def pt_sa(
-    distance_matrix: list[list[float]],
-    n: int,
-    min_temperature: float,
-    max_temperature: float,
-    probability_of_shuffle: float,
-    probability_of_heuristic: float,
-    a: float,
-    b: float,
-    duration_of_execution_in_seconds: int,
-    k: int,
-    max_length_percent_of_cycle: float,
-    swap_states_probability: float,
-    closeness: float
+        distance_matrix: list[list[float]],
+        n: int,
+        min_temperature: float,
+        max_temperature: float,
+        probability_of_shuffle: float,
+        probability_of_heuristic: float,
+        a: float,
+        b: float,
+        duration_of_execution_in_seconds: int,
+        k: int,
+        max_length_percent_of_cycle: float,
+        swap_states_probability: float,
+        closeness: float,
+        cooling_rate: float
 ) -> tuple[list[int], float]:
     """
     Performs a Parallel Tempering Simulated Annealing
@@ -68,8 +70,6 @@ def pt_sa(
                                                   n)
 
         for state in range(n):
-            pass
-            # TODO: cooling each state
-            # TODO: new parameters: cooling_rate/ cooling_function
+            temperatures[state] = cooling(cooling_rate, temperatures[state])
 
     return best_solution, best_solution_length
