@@ -1,4 +1,5 @@
 from initialization import initialization
+from time import time
 
 
 def pt_sa(
@@ -10,7 +11,13 @@ def pt_sa(
     probability_of_heuristic: float,
     a: float,
     b: float,
+    duration_of_execution_in_seconds: int,
 ) -> tuple[list[int], float]:
+    start = time()
+    best_solution, best_solution_length = [
+        None for _ in range(len(distance_matrix))
+    ], float("inf")
+
     temperatures, transition_function_types, initial_solutions = initialization(
         distance_matrix,
         n,
@@ -21,3 +28,14 @@ def pt_sa(
         a,
         b,
     )
+
+    while time() - start < duration_of_execution_in_seconds:
+        pass
+    # TODO: petla w ktorej robi sie k razy
+    # TODO: w niej petla (potencjalnie zwielowątkowiona) która dla kazdego stanu
+    # TODO: robi metropolis transition sprawdza czy jest lepszy od najlepszego koniec petli
+    # TODO: kolejna petla potem robi replica transition
+    # TODO: zakonczenie petli ktora wykonuje sie k razy i zmienijszanie temperatury i powtarzamy
+    # TODO: az do skonczenia czasu
+
+    return best_solution, best_solution_length
