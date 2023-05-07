@@ -1,9 +1,12 @@
 from pt_sa import pt_sa
+from src.Code.read_input import read_input
 
 
 def main():
     # read from file
-    distance_matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    # distance_matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    file_path = "../ftv38.atsp"
+    distance_matrix = read_input(file_path)
 
     # random parameters, do not take them as point of reference
     parameters = {

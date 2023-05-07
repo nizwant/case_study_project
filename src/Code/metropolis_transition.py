@@ -1,8 +1,9 @@
-import math
 from math import ceil
 from random import randrange
 from random import shuffle
 from random import uniform
+
+import numpy as np
 
 from calculate_distance import cycle_length
 
@@ -106,7 +107,7 @@ def acceptance(
     """
     Decides whether to accept the new solution.
     """
-    acceptance_probability = math.expm1(-(new_solution_length - solution_length) / temperature)
+    acceptance_probability = np.exp(-(new_solution_length - solution_length) / temperature)
     return uniform(0, 1) < min(1.0, acceptance_probability)
 
 
