@@ -16,12 +16,15 @@ def pt_sa(
     k: int,
     max_length_percent_of_cycle: float,
 ) -> tuple[list[int], float]:
+    """
+    Performs a Parallel Tempering Simulated Annealing
+    algorithm on a given distance matrix.
+    """
     start = time()
-    best_solution, best_solution_length = [
-        None for _ in range(len(distance_matrix))
-    ], float("inf")
-
+    best_solution = [None for _ in range(len(distance_matrix))]
+    best_solution_length = float("inf")
     solutions_length = [float("inf") for _ in range(n)]
+
     temperatures, transition_function_types, solutions = initialization(
         distance_matrix,
         n,

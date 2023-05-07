@@ -45,7 +45,7 @@ def transition_function_swap(
     distance_matrix: list[list[float]],
     transformation_length: int,
 ) -> tuple[list[int], float]:
-    pass
+    return None, None
     # TODO: implement transition_function_swap
 
 

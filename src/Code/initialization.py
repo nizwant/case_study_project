@@ -1,5 +1,6 @@
 from numpy.random import beta
 from random import random
+from random import shuffle
 
 
 def initialize_temperatures(
@@ -19,7 +20,7 @@ def initialize_transition_function_types(n: int, probability_of_shuffle: float) 
     q[i] = True means that the transition
     function at index i is a shuffle transition function.
     """
-    return [random.random() < probability_of_shuffle for _ in range(n)]
+    return [random() < probability_of_shuffle for _ in range(n)]
 
 
 def initialize_initial_solutions(
@@ -37,7 +38,7 @@ def initialize_initial_solutions(
     # either nearest neighbor solution or random solution
     initial_solution = [None for _ in range(n)]
     for i in range(n):
-        if random.random() < probability_of_heuristic:
+        if random() < probability_of_heuristic:
             initial_solution[i] = nearest_neighbor_solution
         else:
             initial_solution[i] = random_initial_solution(distance_matrix)
@@ -54,7 +55,7 @@ def nearest_neighbor_initial_solution(distance_matrix: list[list[float]]) -> lis
             cities should be visited to obtain a suboptimal
             solution to the TSP. The first city in the path is always city 0.
     """
-    size = distance_matrix.shape[0]
+    size = len(distance_matrix)
     unvisited = set(range(1, size))
     path = [0]
     current_city = 0
@@ -75,9 +76,9 @@ def random_initial_solution(distance_matrix: list[list[float]]) -> list:
     :return: list:
         A list of integers representing the order in which cities should be visited
     """
-    size = distance_matrix.shape[0]
+    size = len(distance_matrix)
     solution = list(range(size))
-    random.shuffle(solution)
+    shuffle(solution)
     return solution
 
 
