@@ -1,9 +1,34 @@
+import threading
 from time import time
 
 from initialization import initialization
 from metropolis_transition import metropolis_transition
 from src.Code.cooling import cooling
 from src.Code.replica_transition import replica_transition
+
+
+def update_state(
+        solutions: list[list[int]],
+        solutions_lengths: float,
+        distance_matrix: list[list[float]],
+        temperatures: list[float],
+        max_temperature: float,
+        transition_function_types: list[bool],
+        max_length_percent_of_cycle: float,
+        state: int,
+        lock: threading.Lock,
+) -> tuple:
+    solution, solution_length = metropolis_transition(
+        solutions[state],
+        solutions_lengths[state],
+        distance_matrix,
+        temperatures[state],
+        max_temperature,
+        transition_function_types[state],
+        max_length_percent_of_cycle,
+    )
+    with lock:
+        solutions[state], solutions_lengths[state] = solution, solution_length
 
 
 def pt_sa(
@@ -30,7 +55,7 @@ def pt_sa(
     best_solution = [None for _ in range(len(distance_matrix))]
     best_solution_length = float("inf")
 
-    temperatures, transition_function_types, solutions, solutions_length = initialization(
+    temperatures, transition_function_types, solutions, solutions_lengths = initialization(
         distance_matrix,
         n,
         min_temperature,
@@ -43,28 +68,34 @@ def pt_sa(
 
     while time() - start < duration_of_execution_in_seconds:
         for _ in range(k):
-            for state in range(n):  # potential multithreading
-                solutions[state], solutions_length[state] = metropolis_transition(
-                    solutions[state],
-                    solutions_length[state],
+            threads = []
+            lock = threading.Lock()
+            for state in range(n):
+                thread = threading.Thread(target=update_state, args=(
+                    solutions,
+                    solutions_lengths,
                     distance_matrix,
-                    temperatures[state],
+                    temperatures,
                     max_temperature,
-                    transition_function_types[state],
+                    transition_function_types,
                     max_length_percent_of_cycle,
-                )
+                    state,
+                    lock,
+                ))
+                thread.start()
+                threads.append(thread)
+            for thread in threads:
+                thread.join()
 
-                if solutions_length[state] < best_solution_length:
-                    best_solution, best_solution_length = (
-                        solutions[state],
-                        solutions_length[state],
-                    )
+            for state in range(n):
+                if solutions_lengths[state] < best_solution_length:
+                    best_solution, best_solution_length = solutions[state], solutions_lengths[state]
 
             for _ in range(n):
                 temperatures = replica_transition(swap_states_probability,
                                                   closeness,
                                                   temperatures,
-                                                  solutions_length,
+                                                  solutions_lengths,
                                                   best_solution_length,
                                                   n)
 
