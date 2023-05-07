@@ -17,7 +17,7 @@ def pt_sa(
     duration_of_execution_in_seconds: int,
     k: int,
     max_length_percent_of_cycle: float,
-    swap_prob: float
+    swap_states_probability: float
 ) -> tuple[list[int], float]:
     """
     Performs a Parallel Tempering Simulated Annealing
@@ -59,8 +59,7 @@ def pt_sa(
                     )
 
             for _ in range(n):
-                temperatures = replica_transition(swap_prob, temperatures, n)
-                # TODO: new parameters: swap_states_probability
+                temperatures = replica_transition(swap_states_probability, temperatures, n)
 
         for state in range(n):
             pass
