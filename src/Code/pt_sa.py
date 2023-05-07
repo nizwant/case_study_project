@@ -2,6 +2,8 @@ from initialization import initialization
 from metropolis_transition import metropolis_transition
 from time import time
 
+from src.Code.replica_transition import replica_transition
+
 
 def pt_sa(
     distance_matrix: list[list[float]],
@@ -15,6 +17,7 @@ def pt_sa(
     duration_of_execution_in_seconds: int,
     k: int,
     max_length_percent_of_cycle: float,
+    swap_prob: float
 ) -> tuple[list[int], float]:
     """
     Performs a Parallel Tempering Simulated Annealing
@@ -56,8 +59,7 @@ def pt_sa(
                     )
 
             for _ in range(n):
-                pass
-                # TODO: replica transition (exchange of solutions)
+                temperatures = replica_transition(swap_prob, temperatures, n)
                 # TODO: new parameters: swap_states_probability
 
         for state in range(n):

@@ -1,10 +1,9 @@
 from pt_sa import pt_sa
-import numpy as np
 
 
 def main():
     # read from file
-    distance_matrix = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+    distance_matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 
     # random parameters, do not take them as point of reference
     parameters = {
@@ -18,6 +17,7 @@ def main():
         "duration_of_execution_in_seconds": 60 * 4,
         "k": 10,
         "max_length_percent_of_cycle": 0.2,  # max 0.3 more will result in bugs
+        "swap_prob": 0.1
     }
 
     solution, solution_length = pt_sa(distance_matrix, **parameters)

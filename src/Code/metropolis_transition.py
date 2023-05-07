@@ -27,16 +27,16 @@ def transition_function_shuffle(
         transformation_length = 2
 
     list_to_shuffle = [None for _ in range(transformation_length)]
-    n = len(solution)
-    start_index = randrange(n)
+    l = len(solution)
+    start_index = randrange(l)
     for i in range(transformation_length):
-        list_to_shuffle[i] = solution[(start_index + i) % n]
+        list_to_shuffle[i] = solution[(start_index + i) % l]
 
     shuffle(list_to_shuffle)
 
     new_solution = solution.copy()
     for i in range(transformation_length):
-        new_solution[(start_index + i) % n] = list_to_shuffle[i]
+        new_solution[(start_index + i) % l] = list_to_shuffle[i]
 
     new_solution_length = cycle_length(new_solution, distance_matrix)
     return new_solution, new_solution_length
@@ -63,13 +63,13 @@ def transition_function_swap(
         # minimum length of this transformation that make sense is 1
         transformation_length = 1
 
-    n = len(solution)
+    l = len(solution)
 
-    start_index_first_path = randrange(n)
+    start_index_first_path = randrange(l)
 
     # starting indices need to be different
     while True:
-        start_index_second_path = randrange(n)
+        start_index_second_path = randrange(l)
         if start_index_second_path != start_index_first_path:
             break
 
@@ -78,7 +78,7 @@ def transition_function_swap(
         start_index_first_path, start_index_second_path = start_index_second_path, start_index_first_path
 
     first_path_can_go_right = start_index_second_path - start_index_first_path >= transformation_length
-    second_path_can_go_right = n - start_index_second_path + start_index_first_path >= transformation_length
+    second_path_can_go_right = l - start_index_second_path + start_index_first_path >= transformation_length
 
     if (not first_path_can_go_right) and second_path_can_go_right:
         start_index_first_path = start_index_first_path - transformation_length + 1
@@ -91,7 +91,7 @@ def transition_function_swap(
 
     new_solution = solution.copy()
     for i, j in zip(first_path, second_path):
-        new_solution[i % n], new_solution[j % n] = new_solution[j % n], new_solution[i % n]
+        new_solution[i % l], new_solution[j % l] = new_solution[j % l], new_solution[i % l]
 
     new_solution_length = cycle_length(new_solution, distance_matrix)
     return new_solution, new_solution_length
