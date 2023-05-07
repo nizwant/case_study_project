@@ -20,7 +20,6 @@ def replica_transition(
         second_index = randrange(n)
         if second_index != first_index:
             break
-
     first_solution_close_to_best = solutions_length[first_index] <= closeness * best_solution_length
     second_solution_close_to_best = solutions_length[second_index] <= closeness * best_solution_length
 
