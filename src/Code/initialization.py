@@ -1,6 +1,9 @@
-from numpy.random import beta
 from random import random
 from random import shuffle
+
+from numpy.random import beta
+
+from src.Code.calculate_distance import cycle_length
 
 
 def initialize_temperatures(
@@ -25,8 +28,10 @@ def initialize_transition_function_types(n: int, probability_of_shuffle: float) 
 
 
 def initialize_initial_solutions(
-        n: int, distance_matrix: list[list[float]], probability_of_heuristic: float
-) -> list:
+        n: int,
+        distance_matrix: list[list[float]],
+        probability_of_heuristic: float
+) -> tuple:
     """
     Returns a list of n solutions, where
     q[i] has probability_of_heuristic chance of being a heuristic initial solution.
@@ -37,17 +42,19 @@ def initialize_initial_solutions(
 
     # create initial solution list and fill it with
     # either nearest neighbor solution or random solution
-    initial_solution = [None for _ in range(n)]
+    initial_solutions = [None for _ in range(n)]
+    initial_solutions_lengths = [None for _ in range(n)]
     for i in range(n):
         if random() < probability_of_heuristic:
-            initial_solution[i] = nearest_neighbor_solution
+            initial_solutions[i] = nearest_neighbor_solution
             # modification to consider: instead of calculating nearest neigbour solution only once
             # before entering the loop, we may calculate it here (then we do it only when we need it)
             # and give them opportunity to be different by e.g. treating starting city as parameter
             # ~ Marta
         else:
-            initial_solution[i] = random_initial_solution(distance_matrix)
-    return initial_solution
+            initial_solutions[i] = random_initial_solution(distance_matrix)
+        initial_solutions_lengths[i] = cycle_length(initial_solutions[i], distance_matrix)
+    return initial_solutions, initial_solutions_lengths
 
 
 def nearest_neighbor_initial_solution(distance_matrix: list[list[float]]) -> list:
@@ -111,7 +118,8 @@ def initialization(
     transition_function_types = initialize_transition_function_types(
         n, probability_of_shuffle
     )
-    initial_solutions = initialize_initial_solutions(
+    initial_solutions, initial_solutions_lengths = initialize_initial_solutions(
         n, distance_matrix, probability_of_heuristic
     )
-    return temperatures, transition_function_types, initial_solutions
+
+    return temperatures, transition_function_types, initial_solutions, initial_solutions_lengths

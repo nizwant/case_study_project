@@ -29,9 +29,8 @@ def pt_sa(
     start = time()
     best_solution = [None for _ in range(len(distance_matrix))]
     best_solution_length = float("inf")
-    solutions_length = [float("inf") for _ in range(n)]
 
-    temperatures, transition_function_types, solutions = initialization(
+    temperatures, transition_function_types, solutions, solutions_length = initialization(
         distance_matrix,
         n,
         min_temperature,
@@ -70,6 +69,6 @@ def pt_sa(
                                                   n)
 
         for state in range(n):
-            temperatures[state] = cooling(cooling_rate, temperatures[state])
+            temperatures[state] = cooling(cooling_rate, temperatures[state], min_temperature)
 
     return best_solution, best_solution_length

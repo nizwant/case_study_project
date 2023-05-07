@@ -14,7 +14,7 @@ def main():
         "probability_of_heuristic": 0.5,
         "a": 1,
         "b": 1,
-        "duration_of_execution_in_seconds": 60 * 4,
+        "duration_of_execution_in_seconds": 5,  # 60 * 4,
         "k": 10,
         "max_length_percent_of_cycle": 0.2,  # max 0.3 more will result in bugs
         "swap_states_probability": 0.1,
