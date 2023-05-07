@@ -1,3 +1,5 @@
+import time
+
 from pt_sa import pt_sa
 from src.Code.read_input import read_input
 
@@ -35,4 +37,6 @@ def main():
 # TODO: parameters (testing, description)
 
 if __name__ == "__main__":
+    start_time = time.time()
     main()
+    print("--- %s seconds ---" % (time.time() - start_time))
