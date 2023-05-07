@@ -23,5 +23,12 @@ def main():
     print(f"Solution: {solution}\nSolution length: {solution_length}")
 
 
+# TODO: handling cooling
+# TODO: handling replica transition
+# TODO: handling acceptance of new solution in metropolis
+# TODO: testing and debugging
+# TODO: profiling
+# TODO: parameters
+
 if __name__ == "__main__":
     main()
