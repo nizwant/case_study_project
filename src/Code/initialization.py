@@ -14,7 +14,11 @@ def initialize_temperatures(
     with a and b as parameters for the beta distribution.
     if a = b = 1, the temperatures are uniformly distributed between min and max.
     """
-    # modification to consider: adding distribution type as parameter ~Marta
+    # modification to consider: adding distribution type as parameter
+    # or different approach: according to the paper below, it's good to set initial temperatures
+    # as standard deviation of initial value of cost function (our initial solution lengths)
+    # https://www.researchgate.net/publication/220403361_Metaheuristics_can_solve_Sudoku_puzzles
+    # ~ Marta
     return beta(a, b, n) * (max - min) + min
 
 
