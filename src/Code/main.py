@@ -24,7 +24,7 @@ def main():
         "max_length_percent_of_cycle": 0.2,  # max 0.3 more will result in bugs
         "swap_states_probability": 0.1,
         "closeness": 1.5,
-        "cooling_rate": 0.1
+        "cooling_rate": 0.1  # probably too low; actually suggested above 0.9
     }
 
     solution, solution_length = pt_sa(distance_matrix, **parameters)
