@@ -1,12 +1,13 @@
 Do zrobienia:
-- testowanie parametrów (13)
+- testowanie parametrów (13) - Łukasz i Magda
 - pomyślenie o innej funkcji do coolingu
 - sprawdzenie, czy branie minimum z kilku krótszych uruchomień algorytmu
-nie będzie bardziej efektywme niż puszczanie algorytmu raz przez 5 minut
+nie będzie bardziej efektywme niż puszczanie algorytmu raz przez 5 minut - Karolina
 - pomyślenie/sprawdzenie, czy nie warto inicjalizować temperatury w inny sposób
 (patrz komentarz do funkcji initialize_temperatures w pliku initialization.py)
 - pomyślenie/sprawdzenie, czy nie warto zmodyfikować inicjalizowania solutions
 (patrz komentarz do funkcji initialize_initial_solutions w pliku initialization.py)
+- pomyślenie, czy można gdzieś dać jeszcze multithreading
 
 Propozycja testowania parametrów:
 1. Ustalamy początkowe wartości, takie jak obecnie w kodzie bądź zmienione
