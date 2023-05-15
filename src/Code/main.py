@@ -2,8 +2,8 @@ import time
 
 from pt_sa import pt_sa
 from src.Code.read_input import read_input
-
-
+from src.Parameters.creating_df_for_parameter import generate_dataframe
+import pandas as pd
 def main():
     # read from file
     # distance_matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
@@ -30,6 +30,10 @@ def main():
     solution, solution_length = pt_sa(distance_matrix, **parameters)
     print(f"Solution: {solution}\nSolution length: {solution_length}")
 
+### parameters_test
+    values = [0.1,0.2,0.3,0.4,0.5]
+    df = generate_dataframe(parameters, values, 'min_temperature', distance_matrix)
+    print(df.head())
 
 # TODO: make cooling cooler
 # TODO: testing and debugging
