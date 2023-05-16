@@ -1,3 +1,4 @@
+import warnings
 from math import ceil
 from random import randrange
 from random import shuffle
@@ -107,6 +108,7 @@ def acceptance(
     """
     Decides whether to accept the new solution.
     """
+    warnings.filterwarnings("ignore")
     acceptance_probability = np.exp(-(new_solution_length - solution_length) / temperature)
     return uniform(0, 1) < min(1.0, acceptance_probability)
 
