@@ -1,7 +1,7 @@
 from datetime import time, datetime
 
 import numpy as np
-from parserTSP import parse
+from src.parserTSP import parse
 import math
 import random
 import copy
