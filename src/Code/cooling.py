@@ -8,5 +8,3 @@ def cooling(
     """
     new_temperature = cooling_rate * temperature
     return max(new_temperature, min_temperature)
-
-    # TODO: making this function cooler

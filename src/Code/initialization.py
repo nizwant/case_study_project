@@ -1,15 +1,15 @@
+from math import floor
+from random import choice
 from random import random
 from random import shuffle
-from random import choice
-from math import floor
 
 from numpy.random import beta
 
-from calculate_distance import cycle_length
+from src.Code.calculate_distance import cycle_length
 
 
 def initialize_temperatures(
-    n: int, min: float, max: float, a: float = 1, b: float = 1
+        n: int, min: float, max: float, a: float = 1, b: float = 1
 ) -> list:
     """
     Returns a list of n temperatures between min and max,
@@ -53,10 +53,6 @@ def initialize_initial_solutions(
     for i in range(n):
         if random() < probability_of_heuristic:
             initial_solutions[i] = choice(nearest_neighbor_solution)
-            # modification to consider: instead of calculating nearest neighbor solution only once
-            # before entering the loop, we may calculate it here (then we do it only when we need it)
-            # and give them opportunity to be different by e.g. treating starting city as parameter
-            # ~ Marta
         else:
             initial_solutions[i] = random_initial_solution(distance_matrix)
         initial_solutions_lengths[i] = cycle_length(
