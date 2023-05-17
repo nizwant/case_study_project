@@ -1,13 +1,15 @@
 from random import random
 from random import shuffle
+from random import choice
+from math import floor
 
 from numpy.random import beta
 
-from src.Code.calculate_distance import cycle_length
+from calculate_distance import cycle_length
 
 
 def initialize_temperatures(
-        n: int, min: float, max: float, a: float = 1, b: float = 1
+    n: int, min: float, max: float, a: float = 1, b: float = 1
 ) -> list:
     """
     Returns a list of n temperatures between min and max,
@@ -32,9 +34,7 @@ def initialize_transition_function_types(n: int, probability_of_shuffle: float) 
 
 
 def initialize_initial_solutions(
-        n: int,
-        distance_matrix: list[list[float]],
-        probability_of_heuristic: float
+    n: int, distance_matrix: list[list[float]], probability_of_heuristic: float
 ) -> tuple:
     """
     Returns a list of n solutions, where
@@ -42,7 +42,9 @@ def initialize_initial_solutions(
     heuristic used here is nearest neighbor.
     """
     # calculate nearest neighbor solution only once
-    nearest_neighbor_solution = nearest_neighbor_initial_solution(distance_matrix)
+    nearest_neighbor_solution = better_nearest_neighbor_initial_solution(
+        distance_matrix
+    )
 
     # create initial solution list and fill it with
     # either nearest neighbor solution or random solution
@@ -50,18 +52,22 @@ def initialize_initial_solutions(
     initial_solutions_lengths = [None for _ in range(n)]
     for i in range(n):
         if random() < probability_of_heuristic:
-            initial_solutions[i] = nearest_neighbor_solution
-            # modification to consider: instead of calculating nearest neigbour solution only once
+            initial_solutions[i] = choice(nearest_neighbor_solution)
+            # modification to consider: instead of calculating nearest neighbor solution only once
             # before entering the loop, we may calculate it here (then we do it only when we need it)
             # and give them opportunity to be different by e.g. treating starting city as parameter
             # ~ Marta
         else:
             initial_solutions[i] = random_initial_solution(distance_matrix)
-        initial_solutions_lengths[i] = cycle_length(initial_solutions[i], distance_matrix)
+        initial_solutions_lengths[i] = cycle_length(
+            initial_solutions[i], distance_matrix
+        )
     return initial_solutions, initial_solutions_lengths
 
 
-def nearest_neighbor_initial_solution(distance_matrix: list[list[float]]) -> list:
+def better_nearest_neighbor_initial_solution(
+    distance_matrix: list[list[float]],
+) -> list:
     """
     Finds a suboptimal solution to the asymmetric Traveling Salesman Problem
     It is irrelevant what values are on the diagonal of the matrix
@@ -69,20 +75,35 @@ def nearest_neighbor_initial_solution(distance_matrix: list[list[float]]) -> lis
     :return: list:
             A list of integers representing the order in which
             cities should be visited to obtain a suboptimal
-            solution to the TSP. The first city in the path is always city 0.
+            solution to the TSP.
     """
-    size = len(distance_matrix)
-    unvisited = set(range(1, size))
-    path = [0]
-    current_city = 0
-    while unvisited:
-        nearest_neighbor = min(
-            unvisited, key=lambda city: distance_matrix[current_city][city]
-        )
-        unvisited.remove(nearest_neighbor)
-        path.append(nearest_neighbor)
-        current_city = nearest_neighbor
-    return path
+
+    number_of_cites = len(distance_matrix)
+    heuristic_solutions = [None for _ in range(number_of_cites)]
+
+    for starting_city in range(number_of_cites):
+        unvisited = set(range(number_of_cites))
+
+        # set starting city
+        current_city = starting_city
+        path = [current_city]
+        unvisited.remove(current_city)
+
+        while unvisited:
+            nearest_neighbor = min(
+                unvisited, key=lambda city: distance_matrix[current_city][city]
+            )
+            unvisited.remove(nearest_neighbor)
+            path.append(nearest_neighbor)
+            current_city = nearest_neighbor
+        heuristic_solutions[starting_city] = path
+
+    # select only best 10% of solutions
+    heuristic_solutions.sort(
+        key=lambda solution: cycle_length(solution, distance_matrix)
+    )
+    best_heuristic_solutions = heuristic_solutions[: floor(number_of_cites * 0.1)]
+    return best_heuristic_solutions
 
 
 def random_initial_solution(distance_matrix: list[list[float]]) -> list:
@@ -99,14 +120,14 @@ def random_initial_solution(distance_matrix: list[list[float]]) -> list:
 
 
 def initialization(
-        distance_matrix: list[list[float]],
-        n: int,
-        min_temperature: float,
-        max_temperature: float,
-        probability_of_shuffle: float,
-        probability_of_heuristic: float,
-        a: float,
-        b: float,
+    distance_matrix: list[list[float]],
+    n: int,
+    min_temperature: float,
+    max_temperature: float,
+    probability_of_shuffle: float,
+    probability_of_heuristic: float,
+    a: float,
+    b: float,
 ) -> tuple:
     """
     Returns a tuple of lists, where
@@ -126,4 +147,9 @@ def initialization(
         n, distance_matrix, probability_of_heuristic
     )
 
-    return temperatures, transition_function_types, initial_solutions, initial_solutions_lengths
+    return (
+        temperatures,
+        transition_function_types,
+        initial_solutions,
+        initial_solutions_lengths,
+    )
