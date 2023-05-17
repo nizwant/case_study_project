@@ -1,7 +1,7 @@
 import time
 
 from pt_sa import pt_sa
-from src.Code.read_input import read_input
+from read_input import read_input
 from src.Parameters.creating_df_for_parameter import generate_dataframe
 
 
@@ -25,7 +25,7 @@ def main():
         "max_length_percent_of_cycle": 0.3,  # max 0.3 more will result in bugs
         "swap_states_probability": 0.1,
         "closeness": 1.5,
-        "cooling_rate": 0.95  # 0.1 probably too low; actually suggested above 0.9
+        "cooling_rate": 0.95,  # 0.1 probably too low; actually suggested above 0.9
     }
 
     solution, solution_length = pt_sa(distance_matrix, **parameters)
@@ -33,9 +33,10 @@ def main():
 
     ### parameters_test
     # TODO: should it be here?
-    values = [0.1,0.2,0.3,0.4,0.5]
-    df = generate_dataframe(parameters, values, 'min_temperature', distance_matrix)
+    values = [0.1, 0.2, 0.3, 0.4, 0.5]
+    df = generate_dataframe(parameters, values, "min_temperature", distance_matrix)
     print(df.head())
+
 
 # TODO: make cooling cooler
 # TODO: testing and debugging
