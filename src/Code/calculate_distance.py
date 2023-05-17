@@ -19,23 +19,3 @@ def cycle_length(cycle: list, distances_matrix: list[list[float]]) -> float:
         length += distances_matrix[cycle[i]][cycle[i + 1]]
     length += distances_matrix[cycle[-1]][cycle[0]]
     return length
-
-
-# ?to delete possibly
-# def path_length(path: list, distances_matrix: list[list[float]]) -> float:
-#     """
-#     Calculates the length of a path.
-
-#     :param path:
-#         A list of integers representing the order in which cities are visited.
-#     :param distances_matrix:
-#         A square matrix of distances between cities. The element at index (i, j)
-#         represents the distance between city i and city j.
-
-#     :return:
-#         float: The total length of the path
-#     """
-#     length = 0
-#     for i in range(len(path) - 1):
-#         length += distances_matrix[path[i], path[i + 1]]
-#     return length

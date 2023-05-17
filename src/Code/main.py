@@ -45,7 +45,11 @@ def run_algorithm(problem_name: str):
 
 
 def iterate_over_all_problems():
+    i = 0
     for name in problems.keys():
+        i = i + 1
+        if i <= 5:
+            continue
         solution, solution_length = run_algorithm(name)
         optimal_solution_length = best_known_solution[name]
         print(f"Problem: {name}")
