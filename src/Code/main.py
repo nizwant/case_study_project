@@ -38,7 +38,6 @@ def run_algorithm(problem_name: str):
     best_solution_length = float("inf")
     for _ in range(num_of_runs):
         solution, solution_length = pt_sa(distance_matrix, **parameters)
-        print(f"Solution: {solution}\nSolution length: {solution_length}")
         if solution_length < best_solution_length:
             best_solution, best_solution_length = solution, solution_length
     return best_solution, best_solution_length
