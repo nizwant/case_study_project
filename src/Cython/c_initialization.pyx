@@ -6,7 +6,7 @@ from random import shuffle
 from numpy.random import beta
 import numpy
 
-from calculate_distance import cycle_length
+from c_calculate_distance import cycle_length
 
 
 def initialize_temperatures(

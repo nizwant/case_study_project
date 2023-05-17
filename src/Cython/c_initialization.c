@@ -1493,9 +1493,9 @@ static const char __pyx_k_number_of_cites[] = "number_of_cites";
 static const char __pyx_k_c_initialization[] = "c_initialization";
 static const char __pyx_k_nearest_neighbor[] = "nearest_neighbor";
 static const char __pyx_k_initial_solutions[] = "initial_solutions";
-static const char __pyx_k_calculate_distance[] = "calculate_distance";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_heuristic_solutions[] = "heuristic_solutions";
+static const char __pyx_k_c_calculate_distance[] = "c_calculate_distance";
 static const char __pyx_k_c_initialization_pyx[] = "c_initialization.pyx";
 static const char __pyx_k_probability_of_shuffle[] = "probability_of_shuffle";
 static const char __pyx_k_initialize_temperatures[] = "initialize_temperatures";
@@ -1516,9 +1516,9 @@ static PyObject *__pyx_n_s_best_heuristic_solutions;
 static PyObject *__pyx_n_s_beta;
 static PyObject *__pyx_n_s_better_nearest_neighbor_initial;
 static PyObject *__pyx_n_s_better_nearest_neighbor_initial_2;
+static PyObject *__pyx_n_s_c_calculate_distance;
 static PyObject *__pyx_n_s_c_initialization;
 static PyObject *__pyx_kp_s_c_initialization_pyx;
-static PyObject *__pyx_n_s_calculate_distance;
 static PyObject *__pyx_n_s_choice;
 static PyObject *__pyx_n_s_cline_in_traceback;
 static PyObject *__pyx_n_s_current_city;
@@ -4017,9 +4017,9 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_beta, __pyx_k_beta, sizeof(__pyx_k_beta), 0, 0, 1, 1},
   {&__pyx_n_s_better_nearest_neighbor_initial, __pyx_k_better_nearest_neighbor_initial, sizeof(__pyx_k_better_nearest_neighbor_initial), 0, 0, 1, 1},
   {&__pyx_n_s_better_nearest_neighbor_initial_2, __pyx_k_better_nearest_neighbor_initial_2, sizeof(__pyx_k_better_nearest_neighbor_initial_2), 0, 0, 1, 1},
+  {&__pyx_n_s_c_calculate_distance, __pyx_k_c_calculate_distance, sizeof(__pyx_k_c_calculate_distance), 0, 0, 1, 1},
   {&__pyx_n_s_c_initialization, __pyx_k_c_initialization, sizeof(__pyx_k_c_initialization), 0, 0, 1, 1},
   {&__pyx_kp_s_c_initialization_pyx, __pyx_k_c_initialization_pyx, sizeof(__pyx_k_c_initialization_pyx), 0, 0, 1, 0},
-  {&__pyx_n_s_calculate_distance, __pyx_k_calculate_distance, sizeof(__pyx_k_calculate_distance), 0, 0, 1, 1},
   {&__pyx_n_s_choice, __pyx_k_choice, sizeof(__pyx_k_choice), 0, 0, 1, 1},
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
   {&__pyx_n_s_current_city, __pyx_k_current_city, sizeof(__pyx_k_current_city), 0, 0, 1, 1},
@@ -4550,7 +4550,7 @@ if (!__Pyx_RefNanny) {
  * from numpy.random import beta
  * import numpy             # <<<<<<<<<<<<<<
  * 
- * from calculate_distance import cycle_length
+ * from c_calculate_distance import cycle_length
  */
   __pyx_t_2 = __Pyx_Import(__pyx_n_s_numpy, 0, -1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -4560,7 +4560,7 @@ if (!__Pyx_RefNanny) {
   /* "c_initialization.pyx":9
  * import numpy
  * 
- * from calculate_distance import cycle_length             # <<<<<<<<<<<<<<
+ * from c_calculate_distance import cycle_length             # <<<<<<<<<<<<<<
  * 
  * 
  */
@@ -4569,7 +4569,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_INCREF(__pyx_n_s_cycle_length);
   __Pyx_GIVEREF(__pyx_n_s_cycle_length);
   PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_s_cycle_length);
-  __pyx_t_1 = __Pyx_Import(__pyx_n_s_calculate_distance, __pyx_t_2, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 9, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_Import(__pyx_n_s_c_calculate_distance, __pyx_t_2, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 9, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_1, __pyx_n_s_cycle_length); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 9, __pyx_L1_error)
