@@ -1,6 +1,6 @@
 import time
 
-from src.Code.pt_sa import pt_sa
+from pt_sa import pt_sa
 from src.Parameters.best_known_solution import best_known_solution
 from src.Parameters.problems import problems
 
@@ -66,7 +66,8 @@ def run_for_one_problem(name: str):
 
 
 def main():
-    iterate_over_all_problems()
+    solution, solution_length = pt_sa(problems["br17"], **set_parameters(5))
+    print(f"Best solution: {solution}\nBest solution length: {solution_length}")
 
     # parameters_test
     # TODO: should it be here?
