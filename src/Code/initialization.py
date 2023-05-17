@@ -5,7 +5,7 @@ from math import floor
 
 from numpy.random import beta
 
-from src.Code.calculate_distance import cycle_length
+from calculate_distance import cycle_length
 
 
 def initialize_temperatures(
@@ -53,7 +53,7 @@ def initialize_initial_solutions(
     for i in range(n):
         if random() < probability_of_heuristic:
             initial_solutions[i] = choice(nearest_neighbor_solution)
-            # modification to consider: instead of calculating nearest neigbour solution only once
+            # modification to consider: instead of calculating nearest neighbor solution only once
             # before entering the loop, we may calculate it here (then we do it only when we need it)
             # and give them opportunity to be different by e.g. treating starting city as parameter
             # ~ Marta
