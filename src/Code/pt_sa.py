@@ -1,23 +1,23 @@
 import threading
 from time import time
 
-from initialization import initialization
-from metropolis_transition import metropolis_transition
-from cooling import cooling
-from replica_transition import replica_transition
+from src.Code.cooling import cooling
+from src.Code.initialization import initialization
+from src.Code.metropolis_transition import metropolis_transition
+from src.Code.replica_transition import replica_transition
 
 
 def update_state(
-    solutions: list[list[int]],
-    solutions_lengths: float,
-    distance_matrix: list[list[float]],
-    temperatures: list[float],
-    max_temperature: float,
-    transition_function_types: list[bool],
-    max_length_percent_of_cycle: float,
-    state: int,
-    lock: threading.Lock,
-) -> tuple:
+        solutions: list[list[int]],
+        solutions_lengths: float,
+        distance_matrix: list[list[float]],
+        temperatures: list[float],
+        max_temperature: float,
+        transition_function_types: list[bool],
+        max_length_percent_of_cycle: float,
+        state: int,
+        lock: threading.Lock,
+):
     solution, solution_length = metropolis_transition(
         solutions[state],
         solutions_lengths[state],
@@ -32,20 +32,20 @@ def update_state(
 
 
 def pt_sa(
-    distance_matrix: list[list[float]],
-    n: int,
-    min_temperature: float,
-    max_temperature: float,
-    probability_of_shuffle: float,
-    probability_of_heuristic: float,
-    a: float,
-    b: float,
-    duration_of_execution_in_seconds: int,
-    k: int,
-    max_length_percent_of_cycle: float,
-    swap_states_probability: float,
-    closeness: float,
-    cooling_rate: float,
+        distance_matrix: list[list[float]],
+        n: int,
+        min_temperature: float,
+        max_temperature: float,
+        probability_of_shuffle: float,
+        probability_of_heuristic: float,
+        a: float,
+        b: float,
+        duration_of_execution_in_seconds: int,
+        k: int,
+        max_length_percent_of_cycle: float,
+        swap_states_probability: float,
+        closeness: float,
+        cooling_rate: float,
 ) -> tuple[list[int], float]:
     """
     Performs a Parallel Tempering Simulated Annealing
@@ -55,12 +55,7 @@ def pt_sa(
     best_solution = [None for _ in range(len(distance_matrix))]
     best_solution_length = float("inf")
 
-    (
-        temperatures,
-        transition_function_types,
-        solutions,
-        solutions_lengths,
-    ) = initialization(
+    temperatures, transition_function_types, solutions, solutions_lengths = initialization(
         distance_matrix,
         n,
         min_temperature,
