@@ -63,30 +63,6 @@ def initialize_initial_solutions(
     return initial_solutions, initial_solutions_lengths
 
 
-def nearest_neighbor_initial_solution(distance_matrix: list[list[float]]) -> list:
-    """
-    Finds a suboptimal solution to the asymmetric Traveling Salesman Problem
-    It is irrelevant what values are on the diagonal of the matrix
-
-    :return: list:
-            A list of integers representing the order in which
-            cities should be visited to obtain a suboptimal
-            solution to the TSP. The first city in the path is always city 0.
-    """
-    size = len(distance_matrix)
-    unvisited = set(range(1, size))
-    path = [0]
-    current_city = 0
-    while unvisited:
-        nearest_neighbor = min(
-            unvisited, key=lambda city: distance_matrix[current_city][city]
-        )
-        unvisited.remove(nearest_neighbor)
-        path.append(nearest_neighbor)
-        current_city = nearest_neighbor
-    return path
-
-
 def better_nearest_neighbor_initial_solution(
     distance_matrix: list[list[float]],
 ) -> list:
