@@ -1,6 +1,7 @@
 from random import random
 from random import shuffle
 from random import randrange
+from math import floor
 
 from numpy.random import beta
 
@@ -118,7 +119,13 @@ def better_nearest_neighbor_initial_solution(
             path.append(nearest_neighbor)
             current_city = nearest_neighbor
         heuristic_solutions[starting_city] = path
-    return heuristic_solutions
+
+    # select only best 10% of solutions
+    heuristic_solutions.sort(
+        key=lambda solution: cycle_length(solution, distance_matrix)
+    )
+    best_heuristic_solutions = heuristic_solutions[: floor(number_of_cites * 0.1)]
+    return best_heuristic_solutions
 
 
 def random_initial_solution(distance_matrix: list[list[float]]) -> list:
