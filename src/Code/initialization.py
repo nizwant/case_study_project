@@ -1,5 +1,6 @@
 from random import random
 from random import shuffle
+from random import randrange
 
 from numpy.random import beta
 
@@ -7,7 +8,7 @@ from src.Code.calculate_distance import cycle_length
 
 
 def initialize_temperatures(
-        n: int, min: float, max: float, a: float = 1, b: float = 1
+    n: int, min: float, max: float, a: float = 1, b: float = 1
 ) -> list:
     """
     Returns a list of n temperatures between min and max,
@@ -32,9 +33,7 @@ def initialize_transition_function_types(n: int, probability_of_shuffle: float) 
 
 
 def initialize_initial_solutions(
-        n: int,
-        distance_matrix: list[list[float]],
-        probability_of_heuristic: float
+    n: int, distance_matrix: list[list[float]], probability_of_heuristic: float
 ) -> tuple:
     """
     Returns a list of n solutions, where
@@ -57,7 +56,9 @@ def initialize_initial_solutions(
             # ~ Marta
         else:
             initial_solutions[i] = random_initial_solution(distance_matrix)
-        initial_solutions_lengths[i] = cycle_length(initial_solutions[i], distance_matrix)
+        initial_solutions_lengths[i] = cycle_length(
+            initial_solutions[i], distance_matrix
+        )
     return initial_solutions, initial_solutions_lengths
 
 
@@ -85,6 +86,41 @@ def nearest_neighbor_initial_solution(distance_matrix: list[list[float]]) -> lis
     return path
 
 
+def better_nearest_neighbor_initial_solution(
+    distance_matrix: list[list[float]],
+) -> list:
+    """
+    Finds a suboptimal solution to the asymmetric Traveling Salesman Problem
+    It is irrelevant what values are on the diagonal of the matrix
+
+    :return: list:
+            A list of integers representing the order in which
+            cities should be visited to obtain a suboptimal
+            solution to the TSP.
+    """
+
+    number_of_cites = len(distance_matrix)
+    heuristic_solutions = [None for _ in range(number_of_cites)]
+
+    for starting_city in range(number_of_cites):
+        unvisited = set(range(number_of_cites))
+
+        # set starting city
+        current_city = starting_city
+        path = [current_city]
+        unvisited.remove(current_city)
+
+        while unvisited:
+            nearest_neighbor = min(
+                unvisited, key=lambda city: distance_matrix[current_city][city]
+            )
+            unvisited.remove(nearest_neighbor)
+            path.append(nearest_neighbor)
+            current_city = nearest_neighbor
+        heuristic_solutions[starting_city] = path
+    return heuristic_solutions
+
+
 def random_initial_solution(distance_matrix: list[list[float]]) -> list:
     """
     Finds a completely random solution to the asymmetric Traveling Salesman Problem
@@ -99,14 +135,14 @@ def random_initial_solution(distance_matrix: list[list[float]]) -> list:
 
 
 def initialization(
-        distance_matrix: list[list[float]],
-        n: int,
-        min_temperature: float,
-        max_temperature: float,
-        probability_of_shuffle: float,
-        probability_of_heuristic: float,
-        a: float,
-        b: float,
+    distance_matrix: list[list[float]],
+    n: int,
+    min_temperature: float,
+    max_temperature: float,
+    probability_of_shuffle: float,
+    probability_of_heuristic: float,
+    a: float,
+    b: float,
 ) -> tuple:
     """
     Returns a tuple of lists, where
@@ -126,4 +162,9 @@ def initialization(
         n, distance_matrix, probability_of_heuristic
     )
 
-    return temperatures, transition_function_types, initial_solutions, initial_solutions_lengths
+    return (
+        temperatures,
+        transition_function_types,
+        initial_solutions,
+        initial_solutions_lengths,
+    )
