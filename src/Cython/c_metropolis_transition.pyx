@@ -6,7 +6,7 @@ from random import uniform
 
 import numpy as np
 
-from calculate_distance import cycle_length
+from c_calculate_distance import cycle_length
 
 
 def transition_function_shuffle(
