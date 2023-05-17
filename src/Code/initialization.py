@@ -1,6 +1,6 @@
 from random import random
 from random import shuffle
-from random import randrange
+from random import choice
 from math import floor
 
 from numpy.random import beta
@@ -42,7 +42,9 @@ def initialize_initial_solutions(
     heuristic used here is nearest neighbor.
     """
     # calculate nearest neighbor solution only once
-    nearest_neighbor_solution = nearest_neighbor_initial_solution(distance_matrix)
+    nearest_neighbor_solution = better_nearest_neighbor_initial_solution(
+        distance_matrix
+    )
 
     # create initial solution list and fill it with
     # either nearest neighbor solution or random solution
@@ -50,7 +52,7 @@ def initialize_initial_solutions(
     initial_solutions_lengths = [None for _ in range(n)]
     for i in range(n):
         if random() < probability_of_heuristic:
-            initial_solutions[i] = nearest_neighbor_solution
+            initial_solutions[i] = choice(nearest_neighbor_solution)
             # modification to consider: instead of calculating nearest neigbour solution only once
             # before entering the loop, we may calculate it here (then we do it only when we need it)
             # and give them opportunity to be different by e.g. treating starting city as parameter
