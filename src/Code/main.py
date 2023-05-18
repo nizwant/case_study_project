@@ -64,7 +64,7 @@ def run_for_one_problem(name: str):
 def main():
     # solution, solution_length = pt_sa(problems["br17"], **set_parameters(10))
     # print(f"Last best solution: {solution}\nBest solution length: {solution_length}")
-    run_for_one_problem("ftv38")
+    run_for_one_problem("ft70")
 
     # parameters_test
     # TODO: should it be here?
