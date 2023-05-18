@@ -62,7 +62,7 @@ def run_for_one_problem(name: str):
 
 
 def main():
-    run_for_one_problem()
+    run_for_one_problem("br17")
 
     # parameters_test
     # TODO: should it be here?
