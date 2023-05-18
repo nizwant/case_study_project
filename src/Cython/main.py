@@ -1,3 +1,4 @@
+import sys
 import time
 
 from pt_sa import pt_sa
@@ -44,11 +45,7 @@ def run_algorithm(problem_name: str):
 
 
 def iterate_over_all_problems():
-    i = 0
     for name in problems.keys():
-        i = i + 1
-        if i <= 5:
-            continue
         solution, solution_length = run_algorithm(name)
         optimal_solution_length = best_known_solution[name]
         print(f"Problem: {name}")
@@ -66,8 +63,10 @@ def run_for_one_problem(name: str):
 
 
 def main():
-    solution, solution_length = pt_sa(problems["br17"], **set_parameters(5))
-    print(f"Best solution: {solution}\nBest solution length: {solution_length}")
+    with open("output.txt", 'w') as f:
+        sys.stdout = f
+        iterate_over_all_problems()
+        sys.stdout = sys.__stdout__
 
     # parameters_test
     # TODO: should it be here?
