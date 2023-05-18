@@ -62,7 +62,7 @@ def run_for_one_problem(name: str):
 
 
 def main():
-    iterate_over_all_problems()
+    run_for_one_problem()
 
     # parameters_test
     # TODO: should it be here?
