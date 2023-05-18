@@ -1,0 +1,42 @@
+Problem: p43
+Our solution length: 5639, optimal solution length: 5620
+Our solution is worse by -0.33693917361233616%
+Problem: ry48p
+Our solution length: 15056, optimal solution length: 14422
+Our solution is worse by -4.210945802337946%
+Problem: ftv44
+Our solution length: 1756, optimal solution length: 1613
+Our solution is worse by -8.143507972665148%
+Problem: ftv64
+Our solution length: 1988, optimal solution length: 1839
+Our solution is worse by -7.494969818913475%
+Problem: ftv33
+Our solution length: 1397, optimal solution length: 1286
+Our solution is worse by -7.945597709377239%
+Problem: kro124p
+Our solution length: 40811, optimal solution length: 36230
+Our solution is worse by -11.224914851388107%
+Problem: ftv38
+Our solution length: 1608, optimal solution length: 1530
+Our solution is worse by -4.850746268656707%
+Problem: ftv55
+Our solution length: 1788, optimal solution length: 1608
+Our solution is worse by -10.06711409395973%
+Problem: ft53
+Our solution length: 8047, optimal solution length: 6905
+Our solution is worse by -14.191624207779299%
+Problem: ftv35
+Our solution length: 1556, optimal solution length: 1473
+Our solution is worse by -5.33419023136247%
+Problem: br17
+Our solution length: 39, optimal solution length: 39
+Our solution is worse by 0.0%
+Problem: rbg323
+Our solution length: 1589, optimal solution length: 1326
+Our solution is worse by -16.55129011957206%
+Problem: rbg358
+Our solution length: 1552, optimal solution length: 1163
+Our solution is worse by -25.064432989690715%
+Problem: rbg443
+Our solution length: 3258, optimal solution length: 2720
+Our solution is worse by -16.51319828115409%
