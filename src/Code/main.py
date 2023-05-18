@@ -58,11 +58,13 @@ def iterate_over_all_problems():
 
 def run_for_one_problem(name: str):
     solution, solution_length = run_algorithm(name)
-    print(f"Best solution: {solution}\nBest solution length: {solution_length}")
+    print(f"Ultimate best solution: {solution}\nUltimate best solution length: {solution_length}")
 
 
 def main():
-    run_for_one_problem("br17")
+    # solution, solution_length = pt_sa(problems["br17"], **set_parameters(10))
+    # print(f"Last best solution: {solution}\nBest solution length: {solution_length}")
+    run_for_one_problem("ftv38")
 
     # parameters_test
     # TODO: should it be here?
