@@ -62,8 +62,7 @@ def iterate_over_all_problems():
         )
         df.loc[(df['Name'] == name), 'our_solution'] = solution_length
         df.loc[(df['Name'] == name), 'deficit_ratio'] = deficit_ratio
-        df.to_csv("../Tests/results.csv")
-        break # to delete
+    df.to_csv("../Tests/results.csv")
 
 
 def run_for_one_problem(name: str):
