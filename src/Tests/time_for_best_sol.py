@@ -152,6 +152,7 @@ def main():
     }
     for name, length in best_known_solution.items():
         if name in problems:
+            print(name)
             best_solution, best_solution_length, df = pt_sa_test(problems[name], df, name, **parameters)
     df.to_csv("dataframe")
     print(df)
