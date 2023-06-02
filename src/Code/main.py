@@ -3,6 +3,7 @@ import time
 import pandas as pd
 
 from pt_sa import pt_sa
+
 from src.Parameters.best_known_solution import best_known_solution
 from src.Parameters.problems import problems
 
