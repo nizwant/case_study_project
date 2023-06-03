@@ -68,6 +68,33 @@ def iterate_over_all_problems():
     df.to_csv("../Tests/results.csv")
 
 
+def iterate_over_all_problems_with_time(exec_time: float):
+    df = pd.DataFrame(
+        columns=["Name", "best_known_sol", "our_solution", "deficit_ratio"]
+    )
+    for name, length in best_known_solution.items():
+        df = pd.concat(
+            [df, pd.DataFrame.from_records([{"Name": name, "best_known_sol": length}])],
+            ignore_index=True,
+        )
+    parameters = set_parameters(exec_time)
+    for name in problems.keys():
+        name = "rbg358"
+        distance_matrix = problems[name]
+        solution, solution_length = pt_sa(distance_matrix, **parameters)
+        optimal_solution_length = best_known_solution[name]
+        print(f"Problem: {name}")
+        print(
+            f"Our solution length: {solution_length}, optimal solution length: {optimal_solution_length}"
+        )
+        deficit_ratio = solution_length / optimal_solution_length * 100 - 100
+        print(f"Our solution is worse by {deficit_ratio}%")
+        df.loc[(df["Name"] == name), "our_solution"] = solution_length
+        df.loc[(df["Name"] == name), "deficit_ratio"] = deficit_ratio
+        break
+    df.to_csv("../Tests/long_time_results.csv")
+
+
 def run_for_one_problem(name: str):
     solution, solution_length = run_algorithm(name)
     print(
@@ -77,7 +104,7 @@ def run_for_one_problem(name: str):
 
 def main():
     # run_for_one_problem("rbg403")
-    iterate_over_all_problems()
+    iterate_over_all_problems_with_time(60 * 60)
 
 
 if __name__ == "__main__":
