@@ -130,12 +130,12 @@ palette <-
       ) +
       scale_color_manual(values = palette) +
       theme_minimal() +
-      theme(legend.position = c(.15, 0.75),
+      theme(legend.position = c(.15, 0.65),
             legend.text = element_text(size = 10),
             plot.title = element_text(size = 14, face = "bold"),
             axis.text = element_text(color = "black"))
  
- ggsave("plot1.png", plot1, width = 25, height = 15, units = "cm", bg = "white")
+ ggsave("time_plot1.png", plot1, width = 25, height = 15, units = "cm", bg = "white")
 
 
 # Making the second plot --------------------------------------------------
@@ -191,4 +191,4 @@ plot2 <- df %>%
         plot.title = element_text(size = 14, face = "bold"),
         axis.text = element_text(color = "black"))
 
-ggsave("plot2.png", plot2, width = 25, height = 15, units = "cm", bg = "white")
+ggsave("time_plot2.png", plot2, width = 25, height = 15, units = "cm", bg = "white")
