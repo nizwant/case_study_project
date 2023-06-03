@@ -56,8 +56,8 @@ summary(df$deficit_ratio)
 # Making the plot ---------------------------------------------------------
 
 df_python <- read_csv("results_python.csv") %>%
-  rename("python_solution" = "our_solution") %>%
-  select(-best_known_sol)
+  mutate(python_solution = deficit_ratio/100) %>%
+  select(Name, python_solution)
 
 library(ggplot2)
 library(tidyr)
@@ -65,24 +65,23 @@ library(wesanderson)
 
 palette <- wes_palette("GrandBudapest1", 2)
 
-df %>%
-  rename("cython_solution" = "deficit_ratio") %>%
-  left_join(df_python, by = "Name") %>%
-  mutate(python_solution = 100 * (python_solution - best_known_sol) / best_known_sol) %>%
-  select(Name, cython_solution, python_solution) %>%
-  pivot_longer(
-    cols = c("cython_solution", "python_solution"),
-    names_to = "type_of_solution",
-    values_to = "deficit_ratio"
-  ) %>%
-  ggplot(aes(
-    x = Name,
-    y = deficit_ratio,
-    color = type_of_solution,
-    group = type_of_solution
-  )) +
-  geom_point(size = 7) +
-  scale_color_manual(values = palette)
+# df %>%
+#   rename("cython_solution" = "deficit_ratio") %>%
+#   left_join(df_python, by = "Name") %>%
+#   select(Name, cython_solution, python_solution) %>%
+#   pivot_longer(
+#     cols = c("cython_solution", "python_solution"),
+#     names_to = "type_of_solution",
+#     values_to = "deficit_ratio"
+#   ) %>%
+#   ggplot(aes(
+#     x = Name,
+#     y = deficit_ratio,
+#     color = type_of_solution,
+#     group = type_of_solution
+#   )) +
+#   geom_point(size = 7) +
+#   scale_color_manual(values = palette)
 
 #############
 
@@ -90,10 +89,7 @@ df %>%
 df %>%
   rename("cython_solution" = "deficit_ratio") %>%
   left_join(df_python, by = "Name") %>%
-  mutate(
-    python_solution = (python_solution - best_known_sol) / best_known_sol,
-    cython_solution = cython_solution / 100
-  ) %>%
+  mutate(cython_solution = cython_solution / 100) %>%
   select(Name, cython_solution, python_solution) %>%
   mutate(Name = factor(Name, levels = rev(problems_levels))) %>%
   ggplot() +
