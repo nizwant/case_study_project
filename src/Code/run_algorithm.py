@@ -94,4 +94,4 @@ def iterate_over_all_problems_with_time(exec_time: float):
         df.loc[(df["Name"] == name), "our_solution"] = solution_length
         df.loc[(df["Name"] == name), "deficit_ratio"] = deficit_ratio
         break
-    df.to_csv("../Tests/Results/long_time_results2.csv")
+    df.to_csv("../Tests/Results/long_term_results2.csv")
