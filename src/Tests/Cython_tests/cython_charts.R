@@ -65,27 +65,7 @@ library(wesanderson)
 
 palette <- wes_palette("GrandBudapest1", 2)
 
-# df %>%
-#   rename("cython_solution" = "deficit_ratio") %>%
-#   left_join(df_python, by = "Name") %>%
-#   select(Name, cython_solution, python_solution) %>%
-#   pivot_longer(
-#     cols = c("cython_solution", "python_solution"),
-#     names_to = "type_of_solution",
-#     values_to = "deficit_ratio"
-#   ) %>%
-#   ggplot(aes(
-#     x = Name,
-#     y = deficit_ratio,
-#     color = type_of_solution,
-#     group = type_of_solution
-#   )) +
-#   geom_point(size = 7) +
-#   scale_color_manual(values = palette)
-
-#############
-
-
+plot <- 
 df %>%
   rename("cython_solution" = "deficit_ratio") %>%
   left_join(df_python, by = "Name") %>%
@@ -112,7 +92,7 @@ df %>%
   scale_y_continuous(labels = scales::percent, breaks = seq(0, 0.4, 0.05)) +
   coord_flip() +
   labs(
-    title = "Comparison of best solution deficit ratio between Python solutions and Cython solutions",
+    title = "Comparison of best solution deficit ratio between Python and Cython solutions",
     y = "Best solution deficit ratio",
     x = "Problem name",
     color = "Type of solution"
@@ -125,3 +105,5 @@ df %>%
     axis.text = element_text(color = "black"),
     panel.grid.major = element_line(color = "gray", linetype = "dashed")
   )
+
+ggsave("cython_plot.png", plot, width = 25, height = 15, units = "cm", bg = "white")
