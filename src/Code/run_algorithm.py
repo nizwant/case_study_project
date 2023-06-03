@@ -43,6 +43,7 @@ def run_for_one_problem(problem_name: str):
     print(
         f"Ultimate best solution: {best_solution}\nUltimate best solution length: {best_solution_length}"
     )
+    return best_solution, best_solution_length
 
 
 def iterate_over_all_problems():
@@ -55,7 +56,7 @@ def iterate_over_all_problems():
             ignore_index=True,
         )
     for name in problems.keys():
-        solution, solution_length = run_algorithm_for_one_problem(name)
+        solution, solution_length = run_for_one_problem(name)
         optimal_solution_length = best_known_solution[name]
         print(f"Problem: {name}")
         print(
@@ -65,7 +66,7 @@ def iterate_over_all_problems():
         print(f"Our solution is worse by {deficit_ratio}%")
         df.loc[(df["Name"] == name), "our_solution"] = solution_length
         df.loc[(df["Name"] == name), "deficit_ratio"] = deficit_ratio
-    df.to_csv("../Tests/Marta_results.csv")
+    df.to_csv("../Tests/Results/Marta_results.csv")
 
 
 def iterate_over_all_problems_with_time(exec_time: float):
@@ -93,4 +94,4 @@ def iterate_over_all_problems_with_time(exec_time: float):
         df.loc[(df["Name"] == name), "our_solution"] = solution_length
         df.loc[(df["Name"] == name), "deficit_ratio"] = deficit_ratio
         break
-    df.to_csv("../Tests/long_time_results2.csv")
+    df.to_csv("../Tests/Results/long_time_results2.csv")

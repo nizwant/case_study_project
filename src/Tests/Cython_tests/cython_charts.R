@@ -1,7 +1,7 @@
 # Reading data ------------------------------------------------------------
 
 library(readr)
-df <- read_csv("results_cython.csv")
+df <- read_csv("../Results/results_cython.csv")
 View(df)
 
 # Preprocessing -------------------------------------------------------
@@ -55,7 +55,7 @@ summary(df$deficit_ratio)
 
 # Making the plot ---------------------------------------------------------
 
-df_python <- read_csv("results_python.csv") %>%
+df_python <- read_csv("../Results/results_python.csv") %>%
   mutate(python_solution = deficit_ratio/100) %>%
   select(Name, python_solution)
 

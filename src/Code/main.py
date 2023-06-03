@@ -4,7 +4,7 @@ from run_algorithm import run_for_one_problem, iterate_over_all_problems, iterat
 
 def main():
     # run_for_one_problem("rbg403")
-    iterate_over_all_problems_with_time(5)
+    iterate_over_all_problems()
 
 
 if __name__ == "__main__":
