@@ -55,7 +55,7 @@ summary(df$deficit_ratio)
 
 # Making the plot ---------------------------------------------------------
 
-df_python <- read_csv("../Results/results_python.csv") %>%
+df_python <- read_csv("../Results/Marta_results.csv") %>%
   mutate(python_solution = deficit_ratio/100) %>%
   select(Name, python_solution)
 
@@ -84,9 +84,9 @@ df %>%
   geom_point(aes(x = Name, y = cython_solution, color = "cython_solution"),
              size = 7) +
   scale_color_manual(
-    values = palette,
+    values = rev(palette),
     labels = c("python_solution" = "Python solution", "cython_solution" = "Cython solution"),
-    guide = guide_legend(),
+    guide = guide_legend(reverse = TRUE),
     name = "Type of solution"
   ) +
   scale_y_continuous(labels = scales::percent, breaks = seq(0, 0.4, 0.05)) +
@@ -107,3 +107,4 @@ df %>%
   )
 
 ggsave("cython_plot.png", plot, width = 25, height = 15, units = "cm", bg = "white")
+
