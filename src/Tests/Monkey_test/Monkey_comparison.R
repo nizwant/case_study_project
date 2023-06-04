@@ -30,8 +30,6 @@ problems_levels = c(
 )
 
 
-
-
 library(dplyr)
 library(ggplot2)
 library(tidyr)
@@ -54,7 +52,7 @@ my_plot <-  df %>%
              size = 7)+
   scale_color_manual(
     values = rev(palette),
-    labels = c("Wore.rate.PT" = "PT_SA", "Worse.Rate.Monkey" = "Monekey"),
+    labels = c("Wore.rate.PT" = "PT_SA", "Worse.Rate.Monkey" = "Monkey"),
     guide = guide_legend(reverse = TRUE),
     name = "Type of algorithm"
   )+
@@ -77,4 +75,4 @@ my_plot <-  df %>%
 
 my_plot
 
-ggsave("monkey_plot.png", my_plot, width = 25, height = 15, units = "cm", bg = "white",)
+ggsave("monkey_plot.png", my_plot, width = 25, height = 15, units = "cm", bg = "white")
