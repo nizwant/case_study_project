@@ -1,5 +1,8 @@
 # Warsztaty_Badawcze
 
+This repository contains a project that aims to solve the Asymmetric Traveling Salesman Problem (ATSP) using a combination of simulated annealing and parallel tempering algorithms.
+The TSP is a well-known combinatorial optimization problem that asks for the shortest route a salesman can take to visit a set of cities exactly once and return to the starting city. In the asymmetric variant, the distance between two cities may differ depending on the direction traveled.
+
 Main case study repository: https://github.com/PrzeChoj/2023Lato-WarsztatyBadawcze <br />
 Data we used to test our algorithm: http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/atsp/ <br />
 Known best solutions to these problems: http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/ATSP.html
@@ -11,7 +14,32 @@ Team members:
 - Łukasz Grabarski
 - Mateusz Nizwantowski
 
-
+```bash
+.
+├── .gitignore
+├── requirements.txt
+├── README.md
+└── src
+    ├── Code
+    │   ├── calculate_distance.py
+    │   ├── cooling.py
+    │   ├── initialization.py
+    │   ├── main.py
+    │   ├── metropolis_transition.py
+    │   ├── pt_sa.py
+    │   ├── read_input.py
+    │   ├── replica_transition.py
+    │   └── run_algorithm.py
+    ├── Cython
+    ├── Parameters
+    │   └── results
+    └── Tests
+        ├── Cython_tests
+        ├── Heuristic_tests
+        ├── Long_term_tests
+        ├── Results
+        └── Time_tests
+```
 The Race:
 - first task: ftv38 \
 Our solution: [14, 17, 18, 19, 1, 15, 6, 7, 5, 8, 37, 9, 10, 11, 12, 13, 36, 20, 21, 22, 23, 24, 25, 26, 31, 32, 33, 29, 28, 27, 30, 34, 38, 35, 4, 2, 3, 0, 16] \
