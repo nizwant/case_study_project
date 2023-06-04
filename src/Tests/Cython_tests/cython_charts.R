@@ -85,7 +85,7 @@ df %>%
              size = 7) +
   scale_color_manual(
     values = palette,
-    labels = c("Python solution", "Cython solution"),
+    labels = c("python_solution" = "Python solution", "cython_solution" = "Cython solution"),
     guide = guide_legend(),
     name = "Type of solution"
   ) +
