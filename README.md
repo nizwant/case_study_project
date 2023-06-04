@@ -1,9 +1,7 @@
 # Warsztaty_Badawcze
 
-Our case study repository: https://github.com/PrzeChoj/2023Lato-WarsztatyBadawcze
-
-Data we used to test our algorithm: http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/atsp/
-
+Main case study repository: https://github.com/PrzeChoj/2023Lato-WarsztatyBadawcze <br />
+Data we used to test our algorithm: http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/atsp/ <br />
 Known best solutions to these problems: http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/ATSP.html
 
 Team members:
@@ -15,7 +13,6 @@ Team members:
 
 
 The Race:
-
 - first task: ftv38 \
 Our solution: [14, 17, 18, 19, 1, 15, 6, 7, 5, 8, 37, 9, 10, 11, 12, 13, 36, 20, 21, 22, 23, 24, 25, 26, 31, 32, 33, 29, 28, 27, 30, 34, 38, 35, 4, 2, 3, 0, 16] \
 Length of our solution: 1608 
