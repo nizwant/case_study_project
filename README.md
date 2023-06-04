@@ -8,11 +8,11 @@ Data we used to test our algorithm: http://comopt.ifi.uni-heidelberg.de/software
 Known best solutions to these problems: http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/ATSP.html
 
 ## Team members
-- Marta Szuwarska
-- Karolina Mączka
-- Magdalena Jeczeń
-- Łukasz Grabarski
-- Mateusz Nizwantowski
+- Marta Szuwarska ([@szuvarska](https://github.com/szuvarska))
+- Karolina Mączka ([@KarolinaMaczka](https://github.com/KarolinaMaczka))
+- Magdalena Jeczeń ([@m24jeczen](https://github.com/m24jeczen))
+- Łukasz Grabarski ([@LukaszGrabarski](https://github.com/LukaszGrabarski))
+- Mateusz Nizwantowski ([@nizwant](https://github.com/nizwant))
 
 ## Function execution guide
 
