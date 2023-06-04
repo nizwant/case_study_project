@@ -65,8 +65,8 @@ If you want to run the algorithm for all provided problems with one run per prob
 
 - Code - directory with all the code needed to run the functions in `src/main.py`
 - Cython - directory with all the code from Code but compiled in C language using Cython, script for compilation called `setup.py` and equivalent of `main.py`.
-- Final_results - all `.csv` files with final results of algorithm, scripts for those tests and scripts for plots of the results.
-- Parameters - all `.csv` files with results of testing parameters, scripts for those tests and scripts for plots of the results.
+- Final_results - all files with final results of algorithm, scripts for those tests and scripts for plots of the results.
+- Parameters - all files with results of testing parameters, scripts for those tests and scripts for plots of the results.
 - Tests - results of additional tests (Cython, heuristic on its own, long term tests etc.) and scripts for plots of the results.
 
 ## The Race
