@@ -55,7 +55,7 @@ summary(df$deficit_ratio)
 
 # Making the plot ---------------------------------------------------------
 
-df_python <- read_csv("../Results/results_python.csv") %>%
+df_python <- read_csv("../Results/Marta_results.csv") %>%
   mutate(python_solution = deficit_ratio/100) %>%
   select(Name, python_solution)
 
@@ -107,3 +107,4 @@ df %>%
   )
 
 ggsave("cython_plot.png", plot, width = 25, height = 15, units = "cm", bg = "white")
+
