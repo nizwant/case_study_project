@@ -29,14 +29,14 @@ def set_parameters(exec_time: float) -> dict:
 def run_algorithm_for_results(problem_name: str) -> pd.DataFrame:
     distance_matrix = problems[problem_name]
     N = len(distance_matrix)
-    exec_time = 300
+    exec_time = 250
 
     if N < 300:
         num_of_runs = int(exec_time / 30)
         parameters = set_parameters(30)
     else:
-        num_of_runs = int(exec_time / 150)
-        parameters = set_parameters(150)
+        num_of_runs = int(exec_time / 125)
+        parameters = set_parameters(125)
 
     dff = pd.DataFrame(columns=['best_solution_length', 'time'])
     best_solution, best_solution_length, dff, timme = pt_sa_for_results(distance_matrix, **parameters, df =dff, time_given=0)
@@ -50,7 +50,7 @@ def df_time_creating(filename_prefix, num_iterations):
     for i in range(num_iterations):
         df = run_algorithm_for_results(filename_prefix)
 
-        csv_filename = f"{filename_prefix}_{i+1}.csv"
+        csv_filename = f"{filename_prefix}_{i+2}.csv"
         df.to_csv(csv_filename, index=False)
 
 def iterate_over_all_problems_2():
@@ -95,7 +95,7 @@ def main():
     #df.to_csv("all_problems_results_3.csv", index=False)
     #df = iterate_over_all_problems_2()
     #df.to_csv("all_problems_results_4.csv", index=False)
-    df_time_creating('rbg358', 1)
+    df_time_creating('rbg358', 14)
 
 
 if __name__ == "__main__":
