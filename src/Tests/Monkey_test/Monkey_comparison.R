@@ -1,0 +1,55 @@
+# Reading data ------------------------------------------------------------
+
+library(readr)
+df <- read.csv("Monkey_comparision.csv")
+df$Worse.Rate.Monkey <- 0.01*df$Worse.Rate.Monkey
+df$Wore.rate.PT <-  0.01*df$Wore.rate.PT
+
+
+# Making the plot ---------------------------------------------------------
+
+
+library(ggplot2)
+library(tidyr)
+library(wesanderson)
+
+palette <- wes_palette("GrandBudapest1", 2)
+
+my_plot <- 
+  ggplot(df) +
+  geom_segment(aes(
+    x = probleem,
+    xend = probleem,
+    y = Wore.rate.PT,
+    yend = Worse.Rate.Monkey
+  ))+
+  geom_point(aes(x = probleem, y = Wore.rate.PT, color = "Wore.rate.PT"),
+             size = 7) +
+  geom_point(aes(x = probleem, y = Worse.Rate.Monkey, color = "Worse.Rate.Monkey"),
+             size = 7)+
+  scale_color_manual(
+    values = rev(palette),
+    labels = c("Wore.rate.PT" = "PT_SA", "Worse.Rate.Monkey" = "Monekey"),
+    guide = guide_legend(reverse = TRUE),
+    name = "Type of algoritm"
+  )+
+  scale_y_continuous(labels = scales::percent, breaks = seq(0, 0.85, 0.1)) +
+  coord_flip() +
+  labs(
+    title = "Comparison of best solution deficit ratio between PT_SA and Monkey algorithm",
+    y = "Best solution deficit ratio",
+    x = "Problem name",
+    color = "Type of algorithm"
+  )+
+  theme_minimal() +
+  theme(
+    legend.position = c(.75, 0.35),
+    legend.text = element_text(size = 10),
+    plot.title = element_text(size = 14, face = "bold"),
+    axis.text = element_text(color = "black"),
+    panel.grid.major = element_line(color = "gray", linetype = "dashed")
+  )
+
+my_plot
+
+ggsave("monkey_plot.png", my_plot, width = 25, height = 15, units = "cm", bg = "white")
