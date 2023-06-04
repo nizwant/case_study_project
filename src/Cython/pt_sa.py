@@ -1,10 +1,10 @@
 import threading
 from time import time
 
-from src.Code.cooling import cooling
-from src.Code.initialization import initialization
-from src.Code.metropolis_transition import metropolis_transition
-from src.Code.replica_transition import replica_transition
+from c_cooling import cooling
+from c_initialization import initialization
+from c_metropolis_transition import metropolis_transition
+from c_replica_transition import replica_transition
 
 
 def update_state(
@@ -96,8 +96,7 @@ def pt_sa(
                         solutions[state],
                         solutions_lengths[state],
                     )
-                    print(f"Best solution length: {best_solution_length}")
-                    print("--- %s seconds ---" % (time() - start))
+                    # print(f"Best solution: {best_solution}\nBest solution length: {best_solution_length}")
 
             for _ in range(n):
                 temperatures = replica_transition(

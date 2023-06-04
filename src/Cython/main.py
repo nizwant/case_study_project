@@ -1,4 +1,7 @@
+import sys
 import time
+
+import pandas as pd
 
 from pt_sa import pt_sa
 from src.Parameters.best_known_solution import best_known_solution
@@ -44,6 +47,9 @@ def run_algorithm(problem_name: str):
 
 
 def iterate_over_all_problems():
+    df = pd.DataFrame(columns=["Name", "best_known_sol", "our_solution", "deficit_ratio"])
+    for name, length in best_known_solution.items():
+        df = pd.concat([df, pd.DataFrame.from_records([{"Name": name, "best_known_sol": length}])], ignore_index=True)
     for name in problems.keys():
         solution, solution_length = run_algorithm(name)
         optimal_solution_length = best_known_solution[name]
@@ -51,9 +57,13 @@ def iterate_over_all_problems():
         print(
             f"Our solution length: {solution_length}, optimal solution length: {optimal_solution_length}"
         )
+        deficit_ratio = solution_length / optimal_solution_length * 100 - 100
         print(
-            f"Our solution is worse by {optimal_solution_length / solution_length * 100 - 100}%"
+            f"Our solution is worse by {deficit_ratio}%"
         )
+        df.loc[(df['Name'] == name), 'our_solution'] = solution_length
+        df.loc[(df['Name'] == name), 'deficit_ratio'] = deficit_ratio
+    df.to_csv("../Tests/results_cython.csv")
 
 
 def run_for_one_problem(name: str):
@@ -62,15 +72,8 @@ def run_for_one_problem(name: str):
 
 
 def main():
-    # solution, solution_length = pt_sa(problems["br17"], **set_parameters(10))
-    # print(f"Last best solution: {solution}\nBest solution length: {solution_length}")
-    run_for_one_problem("rbg403")
-
-    # parameters_test
-    # TODO: should it be here?
-    # values = [0.1, 0.2, 0.3, 0.4, 0.5]
-    # df = generate_dataframe(parameters, values, "min_temperature", distance_matrix)
-    # print(df.head())
+    # run_for_one_problem("rbg403")
+    iterate_over_all_problems()
 
 
 if __name__ == "__main__":

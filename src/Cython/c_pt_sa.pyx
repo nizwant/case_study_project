@@ -96,8 +96,6 @@ def pt_sa(
                         solutions[state],
                         solutions_lengths[state],
                     )
-                    print(f"Best solution length: {best_solution_length}")
-                    print("--- %s seconds ---" % (time() - start))
 
             for _ in range(n):
                 temperatures = replica_transition(
