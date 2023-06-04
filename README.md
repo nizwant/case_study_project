@@ -29,7 +29,9 @@ If you want to run the algorithm for all provided problems (multiple runs during
 ### Iterating over all problems with given time
 If you want to run the algorithm for all provided problems with one run per problem of given time, use the function `iterate_over_all_problems_with_time(exec_time)` provided with time in seconds as parameter. The results will be stored here: `src/Tests/Results` in a file called `long_term_results.csv`.
 
-## Directory structure
+## Directory guide
+
+### Structure
 
 ```bash
 .
@@ -59,6 +61,14 @@ If you want to run the algorithm for all provided problems with one run per prob
         ├── Results
         └── Time_tests
 ```
+### Description of directories
+
+- Code - directory with all the code needed to run the functions in `src/main.py`
+- Cython - directory with all the code from Code but compiled in C language using Cython, script for compilation called `setup.py` and equivalent of `main.py`.
+- Final_results - all `.csv` files with final results of algorithm, scripts for those tests and scripts for plots of the results.
+- Parameters - all `.csv` files with results of testing parameters, scripts for those tests and scripts for plots of the results.
+- Tests - results of additional tests (Cython, heuristic on its own, long term tests etc.) and scripts for plots of the results.
+
 ## The Race
 
 - first task: ftv38 \
