@@ -7,12 +7,29 @@ Main case study repository: https://github.com/PrzeChoj/2023Lato-WarsztatyBadawc
 Data we used to test our algorithm: http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/atsp/ <br />
 Known best solutions to these problems: http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/ATSP.html
 
-Team members:
+## Team members
 - Marta Szuwarska
 - Karolina Mączka
 - Magdalena Jeczeń
 - Łukasz Grabarski
 - Mateusz Nizwantowski
+
+## Function execution guide
+
+This guide provides instructions on how to execute the functions included in this repository. 
+
+After cloning the repository, please go to the script `src/main.py`. There are imported three main functions to use.
+
+### Solving one problem
+If you want to run the algorithm for one specific problem (multiple runs during 5 minutes period), use the function `run_for_one_problem(problem_name)` provided with string name of the problem as a parameter. All the available problems are stored in a dictionary here `src/Parameters/problems.py`. If you want to test our algorithm for a new problem, add it to the dictionary along with a given distance matrix. 
+
+### Iterating over all problems
+If you want to run the algorithm for all provided problems (multiple runs during 5 minutes period), use the function `iterate_over_all_problems()`. The results will be stored here: `src/Tests/Results` in a file called `My_results.csv`.
+
+### Iterating over all problems with given time
+If you want to run the algorithm for all provided problems with one run per problem of given time, use the function `iterate_over_all_problems_with_time(exec_time)` provided with time in seconds as parameter. The results will be stored here: `src/Tests/Results` in a file called `long_term_results.csv`.
+
+## Directory structure
 
 ```bash
 .
@@ -42,7 +59,8 @@ Team members:
         ├── Results
         └── Time_tests
 ```
-The Race:
+## The Race
+
 - first task: ftv38 \
 Our solution: [14, 17, 18, 19, 1, 15, 6, 7, 5, 8, 37, 9, 10, 11, 12, 13, 36, 20, 21, 22, 23, 24, 25, 26, 31, 32, 33, 29, 28, 27, 30, 34, 38, 35, 4, 2, 3, 0, 16] \
 Length of our solution: 1608 
