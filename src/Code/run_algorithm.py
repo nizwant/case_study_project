@@ -56,6 +56,7 @@ def iterate_over_all_problems():
             ignore_index=True,
         )
     for name in problems.keys():
+        print(f"Problem: {name}")
         solution, solution_length = run_for_one_problem(name)
         optimal_solution_length = best_known_solution[name]
         print(f"Problem: {name}")
@@ -80,9 +81,8 @@ def iterate_over_all_problems_with_time(exec_time: float):
         )
     parameters = set_parameters(exec_time)
     for name in problems.keys():
-        if name == "rbg358" or name == "br17":
-            continue
         distance_matrix = problems[name]
+        print(f"Problem: {name}")
         solution, solution_length = pt_sa(distance_matrix, **parameters)
         optimal_solution_length = best_known_solution[name]
         print(f"Problem: {name}")
@@ -93,5 +93,4 @@ def iterate_over_all_problems_with_time(exec_time: float):
         print(f"Our solution is worse by {deficit_ratio}%")
         df.loc[(df["Name"] == name), "our_solution"] = solution_length
         df.loc[(df["Name"] == name), "deficit_ratio"] = deficit_ratio
-        break
-    df.to_csv("../Tests/Results/long_term_results2.csv")
+    df.to_csv("../Tests/Results/long_term_results.csv")
