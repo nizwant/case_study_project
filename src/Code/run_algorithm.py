@@ -67,7 +67,7 @@ def iterate_over_all_problems():
         print(f"Our solution is worse by {deficit_ratio}%")
         df.loc[(df["Name"] == name), "our_solution"] = solution_length
         df.loc[(df["Name"] == name), "deficit_ratio"] = deficit_ratio
-    df.to_csv("../Tests/Results/Marta_results.csv")
+    df.to_csv("../Tests/Results/My_results.csv")
 
 
 def iterate_over_all_problems_with_time(exec_time: float):
