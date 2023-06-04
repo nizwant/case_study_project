@@ -7,16 +7,41 @@ df$Wore.rate.PT <-  0.01*df$Wore.rate.PT
 
 
 # Making the plot ---------------------------------------------------------
+problems_levels = c(
+  "br17",
+  "ftv33",
+  "ftv35",
+  "ftv38",
+  "p43",
+  "ftv44",
+  "ftv47",
+  "ry48p",
+  "ft53",
+  "ftv55",
+  "ftv64",
+  "ft70",
+  "ftv70",
+  "kro124p",
+  "ftv170",
+  "rbg323",
+  "rbg358",
+  "rbg403",
+  "rbg443"
+)
 
 
+
+
+library(dplyr)
 library(ggplot2)
 library(tidyr)
 library(wesanderson)
 
 palette <- wes_palette("GrandBudapest1", 2)
 
-my_plot <- 
-  ggplot(df) +
+my_plot <-  df %>% 
+  mutate(probleem = factor(probleem, levels = rev(problems_levels))) %>% 
+  ggplot() +
   geom_segment(aes(
     x = probleem,
     xend = probleem,
@@ -43,7 +68,7 @@ my_plot <-
   )+
   theme_minimal() +
   theme(
-    legend.position = c(.75, 0.35),
+    legend.position = c(.75, 0.5),
     legend.text = element_text(size = 10),
     plot.title = element_text(size = 14, face = "bold"),
     axis.text = element_text(color = "black"),
