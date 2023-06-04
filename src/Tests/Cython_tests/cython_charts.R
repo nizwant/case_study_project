@@ -84,9 +84,9 @@ df %>%
   geom_point(aes(x = Name, y = cython_solution, color = "cython_solution"),
              size = 7) +
   scale_color_manual(
-    values = palette,
+    values = rev(palette),
     labels = c("python_solution" = "Python solution", "cython_solution" = "Cython solution"),
-    guide = guide_legend(),
+    guide = guide_legend(reverse = TRUE),
     name = "Type of solution"
   ) +
   scale_y_continuous(labels = scales::percent, breaks = seq(0, 0.4, 0.05)) +
