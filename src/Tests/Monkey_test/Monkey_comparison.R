@@ -56,7 +56,7 @@ my_plot <-  df %>%
     values = rev(palette),
     labels = c("Wore.rate.PT" = "PT_SA", "Worse.Rate.Monkey" = "Monekey"),
     guide = guide_legend(reverse = TRUE),
-    name = "Type of algoritm"
+    name = "Type of algorithm"
   )+
   scale_y_continuous(labels = scales::percent, breaks = seq(0, 0.85, 0.1)) +
   coord_flip() +
@@ -68,7 +68,7 @@ my_plot <-  df %>%
   )+
   theme_minimal() +
   theme(
-    legend.position = c(.75, 0.5),
+    legend.position = c(.75, 0.75),
     legend.text = element_text(size = 10),
     plot.title = element_text(size = 14, face = "bold"),
     axis.text = element_text(color = "black"),
@@ -77,4 +77,4 @@ my_plot <-  df %>%
 
 my_plot
 
-ggsave("monkey_plot.png", my_plot, width = 25, height = 15, units = "cm", bg = "white")
+ggsave("monkey_plot.png", my_plot, width = 25, height = 15, units = "cm", bg = "white",)
