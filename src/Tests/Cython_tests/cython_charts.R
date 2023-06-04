@@ -2,7 +2,6 @@
 
 library(readr)
 df <- read_csv("../Results/results_cython.csv")
-View(df)
 
 # Preprocessing -------------------------------------------------------
 

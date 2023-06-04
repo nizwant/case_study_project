@@ -1,5 +1,5 @@
 import time
-from run_algorithm import run_for_one_problem, iterate_over_all_problems, iterate_over_all_problems_with_time
+from Code.run_algorithm import run_for_one_problem, iterate_over_all_problems, iterate_over_all_problems_with_time
 
 
 def main():
