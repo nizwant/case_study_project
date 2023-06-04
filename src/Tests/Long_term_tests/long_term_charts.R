@@ -78,14 +78,14 @@ plot <-
     y = short_solution,
     yend = long_solution
   )) +
-  geom_point(aes(x = Name, y = short_solution, color = "short_solution"),
-             size = 7) +
   geom_point(aes(x = Name, y = long_solution, color = "long_solution"),
              size = 7) +
+  geom_point(aes(x = Name, y = short_solution, color = "short_solution"),
+             size = 7) +
   scale_color_manual(
-    values = palette,
-    labels = c("5 min", "30 min"),
-    guide = guide_legend(),
+    values = rev(palette),
+    labels = c("short_solution" = "5 min (multiple runs)","long_solution" = "30 min (one run)"),
+    guide = guide_legend(reverse = TRUE),
     name = "Execution time of the algorithm"
   ) +
   scale_y_continuous(labels = scales::percent, breaks = seq(0, 0.4, 0.05)) +
