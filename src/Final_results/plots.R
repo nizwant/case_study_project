@@ -239,7 +239,7 @@ library(dplyr)
 df %>%
   mutate(Name = factor(Name, levels = problems_levels)) %>% 
   arrange(Name) %>%
-  kable(format = "latex") %>%
+  kable(format = "latex", digits = 2) %>%
   kable_styling(full_width = FALSE) %>%
   writeLines("our_results.tex")
 
